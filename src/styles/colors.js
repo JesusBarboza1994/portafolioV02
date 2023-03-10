@@ -29,6 +29,9 @@ export const colors = {
     800: "#9D174D",
     900: "#831843",
   },
+  blue:{
+    100: "#086CB5"
+  },
   stone: {
     50: "#FAFAF9",
     100: "#F5F5F4",
@@ -79,5 +82,5 @@ export const colors = {
   },
   black: "#171717",
   white: "#FFFFFF",
-  background: "#F7F7F7"
+  background: "#212438"
 };
