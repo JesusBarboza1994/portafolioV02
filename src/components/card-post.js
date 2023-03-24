@@ -1,17 +1,18 @@
 import styled from "@emotion/styled"
-import { colors } from "../styles/colors"
+import { useAuth } from "../context/auth-context"
+import { colors, ColorStyle } from "../styles/colors"
 
 const Wrapper = styled.div`
   width: 450px;
   max-height: 320px;
-  background: ${colors.blue[200]};
+  background: ${props => ColorStyle(props.dark).backCard};
   display: flex;
   flex-direction: column;
   align-items:flex-start;
   justify-content:center;
   gap:8px;
   border-radius:20px;
-  padding: 8px 16px;
+  padding: 20px;
 `
 const Title = styled.h1`
   color:${colors.blue[100]};
@@ -19,12 +20,12 @@ const Title = styled.h1`
   font-size: 28px;
 `
 const Date = styled.h1`
-  color:${colors.white};
+  color:${props => ColorStyle(props.dark).text};
   font-weight:300;
   font-size: 14px;
 `
 const Text = styled.div`
-  color:${colors.white};
+  color:${props => ColorStyle(props.dark).text};
   font-size:16px;
   font-weight: 400;
 `
@@ -34,11 +35,12 @@ const Url = styled.a`
 `
 
 export default function CardPost({date, title, text}){
+  const {dark} = useAuth();
   return (
-    <Wrapper>
-      <Date>{date}</Date>
+    <Wrapper dark={dark}>
+      <Date dark={dark}>{date}</Date>
       <Title>{title}</Title>
-      <Text>{text}</Text>
+      <Text dark={dark}>{text}</Text>
       <Url href="#">READ MORE</Url>
     </Wrapper>
   )

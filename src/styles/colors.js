@@ -1,8 +1,10 @@
+import { useAuth } from "../context/auth-context";
+
 export const colors = {
   gray:{
     dark:"#212121",
     medium: "#333649",
-    light: "#E0E0E0"
+    light: "#C7CADE"
   },
   blue:{
     100: "#086CB5",
@@ -24,3 +26,17 @@ export const colors = {
   white: "#FFFFFF",
   background: "#171717"
 };
+
+export const ColorStyle = (dark) =>{
+  
+  return {
+    text: dark ? colors.white : colors.black,
+    background: colors.black,
+    button: colors.blue[100],
+    mainText: colors.blue[100],
+    mainBackground: dark ? colors.black : colors.white,
+    backCard: dark ? colors.blue[200]: colors.gray.light,
+    textHover: colors.blue[100],
+    switch: dark ? colors.black : colors.white
+  }
+}

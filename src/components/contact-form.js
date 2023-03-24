@@ -1,13 +1,14 @@
 import styled from "@emotion/styled"
-import { colors } from "../styles/colors"
+import { colors, ColorStyle } from "../styles/colors"
 import contact from '../assets/contact.png'
 import Input from "./input"
 import {BsSend} from "react-icons/bs"
+import { useAuth } from "../context/auth-context"
 
 const Wrapper = styled.div`
   width: 100%;
   min-height: 320px;
-  background: ${colors.blue[200]};
+  background: ${props => ColorStyle(props.dark).backCard};
   display: flex;
   justify-content:space-between;
   border-radius:20px;
@@ -17,16 +18,6 @@ const Title = styled.h1`
   color:${colors.blue[100]};
   font-weight: 700;
   font-size: 28px;
-`
-const Date = styled.h1`
-  color:${colors.white};
-  font-weight:300;
-  font-size: 14px;
-`
-const Text = styled.div`
-  color:${colors.white};
-  font-size:16px;
-  font-weight: 400;
 `
 const DivForm = styled.div`
   display: flex;
@@ -56,8 +47,9 @@ const Button = styled.button`
 `
 
 export default function ContactForm(){
+  const {dark} = useAuth();
   return (
-    <Wrapper>
+    <Wrapper dark={dark}>
      <img src={contact}/>
      <DivForm>
         <Title>Contact me</Title>

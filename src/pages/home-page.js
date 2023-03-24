@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
+import React, { useRef } from 'react';
 import Scene from "../components/three-components/Scene";
-import { colors } from "../styles/colors";
+import { colors, ColorStyle } from "../styles/colors";
 import fondo from '../assets/fondo.jpg'
 import about from '../assets/about.jpg'
 import git from '../assets/git.png'
@@ -18,16 +19,20 @@ import {HiOutlinePhone, HiOutlineMail} from "react-icons/hi"
 import CardStack from "../components/card-stack";
 import CardProject from "../components/card-project";
 import getahome from '../assets/getahome.png'
-import ViewMoreButton from "../components/buttons/view-more";
+import keepable from '../assets/keepable.png'
 import CardPost from "../components/card-post";
 import ContactForm from "../components/contact-form";
 import Section from "../components/section";
 import { keyframes } from "@emotion/react";
+import { useInView } from 'react-intersection-observer';
+import { useAuth } from "../context/auth-context";
+import Footer from "../components/footer";
 
 const Wrapper = styled.div`
   display:flex;
   flex-direction:column;
   gap:48px;
+  padding-bottom:50px;
 `
 const PresentationWrapper = styled.div`
   display:flex;
@@ -38,7 +43,7 @@ const PresentationWrapper = styled.div`
   color: ${colors.white};
   background-image: url(${fondo});
   background-size:cover;
-  background-position: left bottom;
+  background-position: ${props => props.dark ? "left bottom" : "center top"};
 }
 `
 const Position = styled.div`
@@ -68,24 +73,6 @@ const DivAbout = styled.div`
   display: flex;
   flex-direction:column;
   gap: 16px;
-`
-const StackWrapper = styled.div`
-  display:flex;
-  flex-direction:column;
-  gap: 20px;
-  align-items:center;
-`
-// const ProjectsWrapper = styled.div`
-//   display:flex;
-//   flex-direction:column;
-//   gap: 24px;
-//   align-items:center;
-// `
-const PostsWrapper = styled.div`
-  display:flex;
-  flex-direction:column;
-  gap: 24px;
-  align-items:center;
 `
 const bounceRight = keyframes`
   from, 0% to {
@@ -146,7 +133,7 @@ const Button = styled.button`
   font-size: 16px;
   border-radius: 12px;
   padding:10px;
-  color:${colors.white};
+  color:${props => ColorStyle(props.dark).text};
   display:flex;
   border:none;
   align-items:center;
@@ -160,12 +147,20 @@ const Button = styled.button`
 export default function Home(){
   const backImages = [ruby, python, postgre, mongodb, node]
   const frontImages = [vue, react, figma, git, javascript]
+  const {dark} = useAuth();
+  
+  const ref = useRef(null);
+  const { inView, ref: inViewRef } = useInView({
+    threshold: 0.5, // se activará la animación cuando el 50% del elemento sea visible en la pantalla
+    triggerOnce: true // la animación solo se activa una vez
+  });
+
   const StackSubDiv = ()=>{
     return(
       <div style={{display:"flex", flexDirection:"column", gap:"20px"}}>
         <FullStackDivRight style={{justifyContent:"flex-start"}} >
-          {frontImages.map(image =>{
-              return <CardStack image={image}/>
+          {frontImages.map((image, index) =>{
+              return <CardStack image={image} key={index}/>
             })}
         </FullStackDivRight>
 
@@ -181,10 +176,9 @@ export default function Home(){
     return(
       <>
         <DivCardsProject>
-          <CardProject image={getahome} text={"Get a home"} url={"https://fanciful-praline-7ff529.netlify.app/"}/>
-          <CardProject image={getahome} text={"Get a home"} url={"https://fanciful-praline-7ff529.netlify.app/"}/>
-          <CardProject image={getahome} text={"Get a home"} url={"https://fanciful-praline-7ff529.netlify.app/"}/>
-          <CardProject image={getahome} text={"Get a home"} url={"https://fanciful-praline-7ff529.netlify.app/"}/>
+          <CardProject image={getahome} github={"https://github.com/JesusBarboza1994/getahome_frontend"} desc={"Web App to view, rent or sale houses and departments."} text={"Get a home"} url={"https://fanciful-praline-7ff529.netlify.app/"}/>
+          <CardProject image={keepable} github={"https://github.com/JesusBarboza1994/Keepable"} desc={"Write your notes in the post-it's so you can remind any task."}text={"Keepable"} url={"https://keepable-jb.netlify.app/"}/>
+          <CardProject image={getahome} desc={"Web App to view, rent or sale houses and departments."} text={"Get a home"} url={"https://fanciful-praline-7ff529.netlify.app/"}/>
         </DivCardsProject>
         {/* <ViewMoreButton/> */}
       </>
@@ -204,7 +198,7 @@ export default function Home(){
         <DivAbout>
             <h1>About Me</h1>
             <h2>I am a Full Stack Developer</h2>
-            <p style={{color:`${colors.white}`}}>Apasionado por crear soluciones innovadoras y eficientes para problemas dentro de una empresa o negocio. Con más de 3 años de experiencia en diversos frameworks he adquirido habilidades para abordar cualquier desafío. Mi experiencia profesional me brinda una perspectiva única para entender procesos de negocio y proponer soluciones automatizadas que vayan acorde a sus objetivos.</p>
+            <p style={{color: ColorStyle(dark).text}}>Apasionado por crear soluciones innovadoras y eficientes para problemas dentro de una empresa o negocio. Con más de 3 años de experiencia en diversos frameworks he adquirido habilidades para abordar cualquier desafío. Mi experiencia profesional me brinda una perspectiva única para entender procesos de negocio y proponer soluciones automatizadas que vayan acorde a sus objetivos.</p>
             <DivCardsContact>
               <CardContact type="Phone" data="+51 977354389" Item={HiOutlinePhone}/>
               <CardContact type="Email" data="jbarz20@gmail.com" Item={HiOutlineMail}/>
@@ -219,33 +213,26 @@ export default function Home(){
 
   return(
     <Wrapper>
-      <PresentationWrapper>
+      <PresentationWrapper dark={dark}>
         {/* <Scene/> */}
-        <p>Hello</p>
-        <h1>I'M JESUS BARBOZA</h1>
+        <p style={{color: ColorStyle(dark).text}}>Hello</p>
+        <h1 style={{color: ColorStyle(dark).text}}>I'M JESUS BARBOZA</h1>
         <Position>
-          <p>a</p>
+          <p style={{color: ColorStyle(dark).text}}>a</p>
           <Job>&lt;&gt;Full Stack Developer&lt;/&gt;</Job>
         </Position>
-        <Button>Contact me</Button>
+        <Button dark={dark}>Contact me</Button>
         
       </PresentationWrapper>
       <AboutWrapper2/>
-        
-      
-
       <Section title={"Stack"} Container={StackSubDiv}/>
       <Section title={"My Projects"} Container={ProjectsWrapper}/>
       <Section title={"My Last Posts"} Container={PostsWrapper}/>
- 
-      <ContactForm/>
-
-     
+      <ContactForm/>     
    
-      <h1>What can I do?</h1>
+      {/* <h1>What can I do?</h1>
       <h1>Redes</h1>
-      <h1>Hobbies</h1>
-      <p>Me encanta programar y siempre estoy buscando aprender algo nuevo.</p>
+      <h1>Hobbies</h1> */}
     </Wrapper>
   )
 }

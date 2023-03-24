@@ -1,10 +1,11 @@
 import styled from "@emotion/styled"
-import { colors } from "../styles/colors"
+import { useAuth } from "../context/auth-context"
+import { colors, ColorStyle } from "../styles/colors"
 
 const Wrapper = styled.div`
   width: 230px;
   height: 140px;
-  background: ${colors.blue[200]};
+  background: ${props => ColorStyle(props.dark).backCard};
   padding: 40px 0px 15px 0px;
   display: flex;
   flex-direction: column;
@@ -15,15 +16,17 @@ const Wrapper = styled.div`
 `
 const Text = styled.div`
   color:${colors.white};
+  font-size:18px;
 
 `
 
 export default function CardContact({type, data, Item}){
+  const {dark} = useAuth();
   return (
-    <Wrapper>
+    <Wrapper dark={dark}>
       <Item style={{color: colors.blue[100],scale:"4.5"}}/>
       {/* <Title>{type}</Title> */}
-      <Text>{data}</Text>
+      <Text style={{color: ColorStyle(dark).text}}>{data}</Text>
     </Wrapper>
   )
 }

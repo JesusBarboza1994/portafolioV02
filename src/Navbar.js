@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
-import { colors } from "./styles/colors";
+import { colors, ColorStyle } from "./styles/colors";
 import {FaRegMoon} from "react-icons/fa"
 import { useState } from "react";
 import { useAuth } from "./context/auth-context";
@@ -19,24 +19,27 @@ const List = styled.ul`
 `
 const StyledLink = styled(Link)`
   text-decoration:none;
-  color: ${colors.white};
+  color: ${props => ColorStyle(props.dark).text};
 
   &:hover{
-    color:${colors.blue[100]};
+    color:${props => ColorStyle(props.dark).textHover};
     transform: translateY(10px);
   }
 `
 
 const Nav = styled.nav`
-  background-color:${colors.blue[200]};
+  background-color:${props => ColorStyle(props.dark).backCard};
   display:flex;
   justify-content:space-between;
   align-items:center;
+  width:100%;
   padding: 0px 20px;
+  position: sticky;
+  top:0px;
 `
 const Rectangle = styled.div`
-  background: ${colors.black};
-  border-radius: 4px;
+  background: ${props => ColorStyle(props.dark).switch};
+  border-radius: 6px;
   height:12px;
   width:42px;
   position:relative;
@@ -45,11 +48,12 @@ const Rectangle = styled.div`
 `
 const Circle = styled.div`
   background: ${colors.blue[100]};
-  height:20px;
-  width:20px;
+  height:24px;
+  width:24px;
   border-radius:50%;
   position:absolute;
-  right: ${dark => null ? '100': "0"};
+  right: ${props => props.dark ? '1': "0"};
+  
 `
 
 export function Navbar(){
@@ -57,34 +61,31 @@ export function Navbar(){
 
   function handleDarkMode(event){
     event.preventDefault();
-    setDark(true);
+    setDark(!dark);
   }
-
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
   
+
+  const urls = ["home", "articles", "portafolio", "contact", "about"]
   return(
-    <Nav>
+    <Nav dark={dark}>
       <div style={{display:"flex", gap:"8px", alignItems:"center"}}>
         <FaRegMoon/>
-        <Rectangle onClick={handleDarkMode}>
+        <Rectangle onClick={handleDarkMode} dark={dark}>
           <Circle dark={dark}/>
         </Rectangle>
       </div>
       <List>
-        <Li>
-          <StyledLink to="/">Home</StyledLink>
-        </Li>
-        <Li>
-          <StyledLink to="/articles">Articles</StyledLink>
-        </Li>
-        <Li>
-          <StyledLink to="/portafolio">Portafolio</StyledLink>
-        </Li>
-        <Li>
-          <StyledLink to="/contact">Contact</StyledLink>
-        </Li> 
-        <Li>
-          <StyledLink to="/about">About</StyledLink>
-        </Li>
+        { urls.map(url=>{
+          return(
+            <Li>
+              <StyledLink dark={dark} to={`/${url === "home" ? "" : url}`}>{capitalizeFirstLetter(url)}</StyledLink>
+            </Li>
+          )
+          })
+        }
       </List>
     </Nav>
   )
