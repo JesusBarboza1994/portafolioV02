@@ -110,12 +110,12 @@ const FullStackDivLeft = styled.div`
 `
 const DivCardsContact = styled.div`
   display:flex;
-  gap:12px;
+  justify-content: space-evenly;
   width:100%;
 `
 const DivCardsProject = styled.div`
   display:flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-wrap:wrap;
   gap:24px;
 
@@ -178,7 +178,7 @@ export default function Home(){
         <DivCardsProject>
           <CardProject image={getahome} github={"https://github.com/JesusBarboza1994/getahome_frontend"} desc={"Web App to view, rent or sale houses and departments."} text={"Get a home"} url={"https://fanciful-praline-7ff529.netlify.app/"}/>
           <CardProject image={keepable} github={"https://github.com/JesusBarboza1994/Keepable"} desc={"Write your notes in the post-it's so you can remind any task."}text={"Keepable"} url={"https://keepable-jb.netlify.app/"}/>
-          <CardProject image={getahome} desc={"Web App to view, rent or sale houses and departments."} text={"Get a home"} url={"https://fanciful-praline-7ff529.netlify.app/"}/>
+          {/* <CardProject image={getahome} desc={"Web App to view, rent or sale houses and departments."} text={"Get a home"} url={"https://fanciful-praline-7ff529.netlify.app/"}/> */}
         </DivCardsProject>
         {/* <ViewMoreButton/> */}
       </>
@@ -198,7 +198,7 @@ export default function Home(){
         <DivAbout>
             <h1>About Me</h1>
             <h2>I am a Full Stack Developer</h2>
-            <p style={{color: ColorStyle(dark).text}}>Apasionado por crear soluciones innovadoras y eficientes para problemas dentro de una empresa o negocio. Con más de 3 años de experiencia en diversos frameworks he adquirido habilidades para abordar cualquier desafío. Mi experiencia profesional me brinda una perspectiva única para entender procesos de negocio y proponer soluciones automatizadas que vayan acorde a sus objetivos.</p>
+            <p style={{color: ColorStyle(dark).text}}>Passionate about creating innovative and efficient solutions for problems within a company or business. With more than 3 years of experience in various frameworks I have acquired the skills to tackle any challenge. My professional experience gives me a unique perspective to understand business processes and propose automated solutions that are consistent with their objectives.</p>
             <DivCardsContact>
               <CardContact type="Phone" data="+51 977354389" Item={HiOutlinePhone}/>
               <CardContact type="Email" data="jbarz20@gmail.com" Item={HiOutlineMail}/>

@@ -14,6 +14,7 @@ const Button = styled.button`
   border-radius:12px;
   font-size: 14px;
   width:120px;
+  cursor:pointer;
 `
 
 export default function ButtonGithub({text, onClick}){

@@ -21,7 +21,7 @@ const Title = styled.h1`
 `
 const Date = styled.h1`
   color:${props => ColorStyle(props.dark).text};
-  font-weight:300;
+  font-weight:400;
   font-size: 14px;
 `
 const Text = styled.div`

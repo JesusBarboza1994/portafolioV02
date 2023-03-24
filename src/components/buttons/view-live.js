@@ -13,6 +13,7 @@ const Button = styled.button`
   font-size: 14px;
   width:120px;
   border:none;
+  cursor:pointer;
 `
 
 export default function ButtonLive({text, onClick}){

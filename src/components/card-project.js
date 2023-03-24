@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   padding:20px;
   gap:20px;
   justify-content: space-between;
-  box-shadow: 0px 0px 5px 2px ${colors.black};
+  box-shadow: 0px 0px 5px 1px ${props => props.dark ? colors.white : colors.black};
 `
 const Img = styled.img`
   height: 150px;
@@ -66,6 +66,9 @@ export default function CardProject({image, text, url, desc, github}){
   function handleGithub(){
     window.location.href = `${github}`
   }
+  function handleLive(){
+    window.location.href = `${url}`
+  }
 
   return (
     
@@ -82,7 +85,7 @@ export default function CardProject({image, text, url, desc, github}){
         </div>
         <div style={{width:"100%"}}>
           <DivButton>
-            <ButtonLive text={"Live Demo"}/>
+            <ButtonLive text={"Live Demo"} onClick={handleLive}/>
             <ButtonGithub text={"Github Repo"} onClick={handleGithub}/>
           </DivButton>
         </div>
