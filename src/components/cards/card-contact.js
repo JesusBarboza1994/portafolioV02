@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
-import { useAuth } from "../context/auth-context"
-import { colors, ColorStyle } from "../styles/colors"
+import { useAuth } from "../../context/auth-context"
+import { colors, ColorStyle } from "../../styles/colors"
 
 const Wrapper = styled.div`
   width: 230px;

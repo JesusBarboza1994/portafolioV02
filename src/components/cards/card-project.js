@@ -1,11 +1,8 @@
 import styled from "@emotion/styled"
-import { colors, ColorStyle } from "../styles/colors"
-import {AiFillEye} from "react-icons/ai"
-import { Link } from "react-router-dom"
-import ButtonGithub from "./buttons/view-github"
-import ButtonLive from "./buttons/view-live"
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/auth-context"
+import { colors, ColorStyle } from "../../styles/colors"
+import ButtonGithub from "../buttons/view-github"
+import ButtonLive from "../buttons/view-live"
+import { useAuth } from "../../context/auth-context"
 
 const Wrapper = styled.div`
   width: 310px;
@@ -19,7 +16,7 @@ const Wrapper = styled.div`
   padding:20px;
   gap:20px;
   justify-content: space-between;
-  box-shadow: 0px 0px 5px 1px ${props => props.dark ? colors.white : colors.black};
+  // box-shadow: 0px 0px 3px 1px ${props => props.dark ? colors.white : colors.black};
 `
 const Img = styled.img`
   height: 150px;

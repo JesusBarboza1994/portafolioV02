@@ -1,10 +1,9 @@
 import styled from "@emotion/styled";
-import { Link } from "react-router-dom";
+import { Link  } from "react-router-dom";
 import { colors, ColorStyle } from "./styles/colors";
 import {FaRegMoon} from "react-icons/fa"
-import { useState } from "react";
 import { useAuth } from "./context/auth-context";
-
+import { animateScroll as scroll } from 'react-scroll';
 const Li = styled.li`
   list-style:none;
 `
@@ -20,13 +19,22 @@ const List = styled.ul`
 const StyledLink = styled(Link)`
   text-decoration:none;
   color: ${props => ColorStyle(props.dark).text};
-
   &:hover{
     color:${props => ColorStyle(props.dark).textHover};
     transform: translateY(10px);
   }
 `
-
+const StyledLinkButton = styled(Link)`
+  text-decoration:none;
+  background:${props => ColorStyle(props.dark).buttonNav};
+  padding: 6px 18px;
+  border-radius:8px;
+  color: ${props => ColorStyle(props.dark).text};
+  &:hover{
+    color:${props => ColorStyle(props.dark).textHover};
+    transform: translateY(10px);
+  }
+`
 const Nav = styled.nav`
   background-color:${props => ColorStyle(props.dark).backCard};
   display:flex;
@@ -53,12 +61,10 @@ const Circle = styled.div`
   border-radius:50%;
   position:absolute;
   right: ${props => props.dark ? '1': "0"};
-  
 `
 
-export function Navbar(){
+export function Navbar(props){
   const {dark, setDark} = useAuth();
-
   function handleDarkMode(event){
     event.preventDefault();
     setDark(!dark);
@@ -66,9 +72,8 @@ export function Navbar(){
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-  
 
-  const urls = ["home", "articles", "portafolio", "contact", "about"]
+  const urls = ["home", "articles", "portafolio", "contact"]
   return(
     <Nav dark={dark}>
       <div style={{display:"flex", gap:"8px", alignItems:"center"}}>
@@ -78,10 +83,17 @@ export function Navbar(){
         </Rectangle>
       </div>
       <List>
-        { urls.map(url=>{
+        { urls.map((url, index)=>{
+          if(url === "contact"){
+            return(
+              <Li>
+                <StyledLinkButton dark={dark} to={`/contact`} key={index}>{capitalizeFirstLetter(url)}</StyledLinkButton>
+              </Li>
+            )
+          }
           return(
             <Li>
-              <StyledLink dark={dark} to={`/${url === "home" ? "" : url}`}>{capitalizeFirstLetter(url)}</StyledLink>
+              <StyledLink dark={dark} to={`/${url === "home" ? "" : url}`} key={'b'+index}>{capitalizeFirstLetter(url)}</StyledLink>
             </Li>
           )
           })

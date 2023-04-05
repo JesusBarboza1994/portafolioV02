@@ -36,7 +36,7 @@ const TextArea = styled.textarea`
 const Label = styled.label`
   color:${props => ColorStyle(props.dark).text};
   font-weight: 500;
-  font-size: 20px;
+  font-size: 16px;
 `
 const Wrapper = styled.div`
   display:flex;

@@ -36,7 +36,8 @@ export const ColorStyle = (dark) =>{
     mainText: colors.blue[100],
     mainBackground: dark ? colors.black : colors.white,
     backCard: dark ? colors.blue[200]: colors.gray.light,
-    textHover: colors.blue[100],
-    switch: dark ? colors.black : colors.white
+    textHover: dark ? colors.gray.light : colors.white,
+    switch: dark ? colors.black : colors.white,
+    buttonNav: dark ? colors.blue[100] : colors.blue[100]
   }
 }

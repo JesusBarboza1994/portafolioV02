@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
-import { useAuth } from "../context/auth-context"
-import { colors, ColorStyle } from "../styles/colors"
+import { useAuth } from "../../context/auth-context"
+import { colors, ColorStyle } from "../../styles/colors"
 
 const Wrapper = styled.div`
   width: 450px;
@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items:flex-start;
-  justify-content:center;
+  justify-content:flex-start;
   gap:8px;
   border-radius:20px;
   padding: 20px;
@@ -34,14 +34,14 @@ const Url = styled.a`
   color: ${colors.blue[100]};
 `
 
-export default function CardPost({date, title, text}){
+export default function CardPost({date, title, text, url}){
   const {dark} = useAuth();
   return (
     <Wrapper dark={dark}>
       <Date dark={dark}>{date}</Date>
       <Title>{title}</Title>
       <Text dark={dark}>{text}</Text>
-      <Url href="#">READ MORE</Url>
+      <Url href={url}>READ MORE</Url>
     </Wrapper>
   )
 }

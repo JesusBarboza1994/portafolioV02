@@ -10,6 +10,7 @@ const Wrapper = styled.div`
   min-height: 320px;
   background: ${props => ColorStyle(props.dark).backCard};
   display: flex;
+  flex-direction:column;
   justify-content:space-between;
   border-radius:20px;
   padding: 32px 32px;
@@ -27,10 +28,12 @@ const DivForm = styled.div`
 `
 const DivInput = styled.div`
   display:flex;
-  gap: 40px;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
 `
 const Button = styled.button`
-  width:200px;
+  width:100%;
   background: ${colors.blue[100]};
   height: 36px;
   font-size: 16px;
@@ -45,23 +48,47 @@ const Button = styled.button`
   display:flex;
   gap:8px;
 `
+const SubDiv = styled.div`
+  display:flex;
+`
+const Img = styled.img`
+  max-height:400px;
+`
+const DivTitle = styled.div`
+  display:flex;
+  justify-content:center;
+`
+const Text = styled.p`
+  padding:16px 0px;
+  color:${props => ColorStyle(props.dark).text};
+`
 
 export default function ContactForm(){
   const {dark} = useAuth();
   return (
     <Wrapper dark={dark}>
-     <img src={contact}/>
-     <DivForm>
-        <Title>Contact me</Title>
-        <div style={{display:"flex", flexDirection:"column", gap:"16px"}}>
-          <DivInput>
-            <Input label={"Your name"} placeholder={"John Doe"} id={"name"} type={"input"}/>
-            <Input label={"Your email"} placeholder={"example@mail.com"} id={"email"} type={"input"}/>
-          </DivInput>
-          <Input label={"Message"} placeholder={"Type your message here..."} id={"text"} type={"textarea"}/>
-        </div>
-        <Button>Send Message <BsSend/></Button>
-     </DivForm>
+      <div>
+        <DivTitle>
+          <Title>Contact me</Title>
+        </DivTitle>
+        <Text dark={dark}>Looking to expand your team? Or do you need a web developer for a specific project? If I can help you in any way don't hesitate to fill this form.</Text>
+      </div>
+      <SubDiv>
+        <Img src={contact}/>
+        <DivForm>
+            
+            <div style={{display:"flex", flexDirection:"column", gap:"16px"}}>
+              <DivInput>
+                <Input label={"First Name"} placeholder={"John "} id={"firstName"} type={"input"}/>
+                <Input label={"Last Name"} placeholder={"Doe"} id={"lastName"} type={"input"}/>
+                <Input label={"Email"} placeholder={"example@mail.com"} id={"email"} type={"input"}/>
+                <Input label={"Phone"} placeholder={"987654321"} id={"phone"} type={"input"}/>
+              </DivInput>
+              <Input label={"Message"} placeholder={"Type your message here..."} id={"text"} type={"textarea"}/>
+            </div>
+            <Button>Send Message <BsSend/></Button>
+        </DivForm>
+      </SubDiv>
     </Wrapper>
   )
 }
