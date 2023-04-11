@@ -20,6 +20,7 @@ const Wrapper = styled.div`
   flex-direction:column;
   gap:48px;
   padding-bottom:50px;
+  position:relative;
 `
 
 export default function Home(){
@@ -27,15 +28,16 @@ export default function Home(){
   return(
     
     <Wrapper>
-      <Canvas>
+      {/* <Canvas>
         <Box/>
-      </Canvas>
-      <Scene/>
+      </Canvas> */}
+      
       <Presentation/>
       <AboutWrapper/>
       <Section title={"Stack"} Container={StackSubDiv}/>
       <Section title={"My Projects"} Container={ProjectsWrapper}/>
       <Section id={"contact"} title={"My Last Posts"} Container={PostsWrapper}/>  
+
     </Wrapper>
   )
 }
