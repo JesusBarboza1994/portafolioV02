@@ -15,6 +15,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
     "react-intersection-observer": "^9.4.3",
+    "react-responsive": "^9.0.2",
     "react-scripts": "5.0.1",
     "react-scroll": "^1.8.9",
     "three": "^0.147.0",
@@ -45,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-router-dom": "^5.3.3",
     "react-router-dom": "^6.5.0"
   }
 }

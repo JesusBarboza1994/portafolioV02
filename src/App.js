@@ -13,6 +13,7 @@ import { Article1 } from "./articles/selenium-web-scrapping";
 import { Article2 } from "./articles/threejs-react";
 import { Canvas } from "@react-three/fiber";
 import Box from "./components/three-components/box";
+import NavbarRes from "./components/navbar/navbar-responsive";
 const Wrapper = styled.div`
   max-width: 1000px;
   margin:auto;
@@ -55,6 +56,7 @@ function App() {
   return (
     <div style={{background:ColorStyle(dark).mainBackground}}>
       <Navbar onClick={handleNavbarClick}/>
+      {/* <NavbarRes/> */}
       <Main>
         <Back>
           <Canvas>

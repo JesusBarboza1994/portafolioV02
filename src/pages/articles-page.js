@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   gap: 20px;
 `
 const Article = styled.div`
+  // max-width: 380px;
 `
 const ListArticles = styled.div`
   width:100%;

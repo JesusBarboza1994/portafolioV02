@@ -4,6 +4,7 @@ import { colors, ColorStyle } from "../../styles/colors"
 
 const Wrapper = styled.div`
   width: 450px;
+  max-width: 380px;
   max-height: 320px;
   background: ${props => ColorStyle(props.dark).backCard};
   display: flex;
