@@ -11,7 +11,7 @@ const InputStyle = styled.input`
   width:220px;
   height: 40px;
   padding: 2px 8px;
-  color: ${colors.white};
+  color: ${props => props.dark ? colors.white : colors.black};
   ::placeholder { 
     color: ${props => props.dark ? colors.gray.light : colors.gray.dark};
     opacity: 0.5; 
@@ -23,11 +23,11 @@ const TextArea = styled.textarea`
   box-shadow: 0px 2px 8px ${colors.black};
   border-radius: 12px;
   border:none;
+  padding: 10px 8px;
+  color: ${props => props.dark ? colors.white : colors.black};
   opacity: ${props => props.dark ? "100%" : "100%"};
   width:100%;
   min-height: 100px;
-  padding: 2px 8px;
-  color: ${colors.white};
   ::placeholder { 
     color: ${props => props.dark ? colors.gray.light : colors.gray.dark};
     opacity: 0.5; 
@@ -43,15 +43,15 @@ const Wrapper = styled.div`
   flex-direction:column;
   gap:6px;
 `
-export default function Input({label, placeholder, id, type}){
+export default function Input({label, placeholder, id, type, name, onChange, value}){
   const {dark} = useAuth()
   return(
     <Wrapper>
       <Label  dark={dark} htmlFor={id}>{label}</Label>
       {type === "input" ?
-        <InputStyle placeholder={placeholder} id={id} dark={dark}/>
+        <InputStyle value={value} onChange={onChange} placeholder={placeholder} id={id} dark={dark} name={name}/>
       :
-        <TextArea dark={dark  } placeholder={placeholder}/>
+        <TextArea value={value} onChange={onChange} dark={dark} placeholder={placeholder} name={name}/>
       }
       
     </Wrapper>
