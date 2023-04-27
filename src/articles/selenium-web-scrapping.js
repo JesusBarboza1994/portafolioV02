@@ -5,10 +5,11 @@ import { useAuth } from "../context/auth-context"
 
 const Wrapper = styled.div`
   min-height:800px;
-  padding-top:50px;
+  padding: 50px 20px 0px 20px;
 `
 const TextDate = styled.p`
   color: ${props => ColorStyle(props.dark).text};  
+  padding-bottom:20px;
 `
 const DivDate = styled.div`
   width:100%;

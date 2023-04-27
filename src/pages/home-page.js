@@ -17,27 +17,35 @@ import { Box } from "@react-three/drei";
 
 const Wrapper = styled.div`
   display:flex;
+  max-width: 1000px;
   flex-direction:column;
   gap:48px;
+  align-items:center;
   padding-bottom:50px;
+  margin: auto;
+  margin-top:40px;
   position:relative;
+  @media(max-width:975px){
+    max-width:550px;
+  }
 `
 
 export default function Home(){
 
   return(
-    
-    <Wrapper>
-      {/* <Canvas>
-        <Box/>
-      </Canvas> */}
-      
+    <>
       <Presentation/>
-      <AboutWrapper/>
-      <Section title={"Stack"} Container={StackSubDiv}/>
-      <Section title={"My Projects"} Container={ProjectsWrapper}/>
-      <Section id={"contact"} title={"My Last Posts"} Container={PostsWrapper}/>  
+      <Wrapper>
+        {/* <Canvas>
+          <Box/>
+        </Canvas> */}
+        
+        <AboutWrapper/>
+        <Section title={"Stack"} Container={StackSubDiv}/>
+        <Section title={"My Projects"} Container={ProjectsWrapper}/>
+        <Section id={"contact"} title={"My Last Posts"} Container={PostsWrapper}/>  
 
-    </Wrapper>
+      </Wrapper>
+    </>
   )
 }

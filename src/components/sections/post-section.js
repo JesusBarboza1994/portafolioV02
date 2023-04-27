@@ -7,7 +7,10 @@ const DivCardsPost = styled.div`
   flex-wrap:wrap;
   width:100%;
   justify-content: space-between;
-  gap: 12px;
+  gap:12px;
+  @media(max-width:975px){
+    justify-content:center;
+  }
 `
 
 export const PostsWrapper = () =>{

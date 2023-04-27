@@ -5,7 +5,7 @@ import ButtonLive from "../buttons/view-live"
 import { useAuth } from "../../context/auth-context"
 
 const Wrapper = styled.div`
-  width: 310px;
+  width: 300px;
   height: 380px;
   background: ${props => ColorStyle(props.dark).backCard};
   display: flex;

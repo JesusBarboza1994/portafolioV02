@@ -33,6 +33,11 @@ const DivInput = styled.div`
   justify-content:space-between;
   gap:20px;
   flex-wrap:wrap;
+  @media(max-width:975px){
+    // display:grid;
+    // grid-template-rows: 1fr 1fr;
+    // grid-template-columns: 1fr 1fr;
+  }
 `
 const Button = styled.button`
   width:100%;
@@ -52,9 +57,16 @@ const Button = styled.button`
 `
 const SubDiv = styled.div`
   display:flex;
+  @media(max-width:975px){
+    flex-direction:column-reverse;
+    align-items:center;
+  }
 `
 const Img = styled.img`
   max-height:400px;
+  @media(max-width:975px){
+    max-width:400px;
+  }
 `
 const DivTitle = styled.div`
   display:flex;
@@ -63,6 +75,7 @@ const DivTitle = styled.div`
 const Text = styled.p`
   padding:16px 0px;
   color:${props => ColorStyle(props.dark).text};
+  text-align:justify;
 `
 
 export default function ContactForm(){

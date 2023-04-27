@@ -6,10 +6,13 @@ import { articles } from "../articles/articles"
 
 const Wrapper = styled.div`
   min-height: 1000px;
-  padding-top: 20px;
+  // padding-top: 20px;
   display:flex;
   flex-direction: column;
   gap: 20px;
+  max-width: 1000px;
+  margin:auto;
+  padding: 20px 20px 0px 20px;
 `
 const Article = styled.div`
   // max-width: 380px;
@@ -35,6 +38,9 @@ const SubTitle = styled.h2`
   padding-left: 8px;
   border-left: 3px solid ${props => ColorStyle(props.dark).mainText};
 `
+const H1 = styled.h1`
+
+`
 
 export default function Articles(){
   const { dark } = useAuth();
@@ -47,13 +53,13 @@ export default function Articles(){
         {
           articles.map((article, index) =>{
             return (
-              <Article key={index}> 
-                <TextDate dark={dark}>{article.date.toDateString()}</TextDate>
-                <Url to={article.url} dark={dark}>               
+              <Url to={"/articles/"+article.url} dark={dark}>               
+                <Article key={index}> 
+                  <TextDate dark={dark}>{article.date.toDateString()}</TextDate>
                   <h1>{article.title}</h1>
-                </Url>
-                <p>{article.description}</p>
-              </Article>
+                  <p>{article.description}</p>
+                </Article>
+              </Url>
             )
           })
         }

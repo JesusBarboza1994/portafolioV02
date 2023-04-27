@@ -4,9 +4,16 @@ import { colors, ColorStyle } from "../../styles/colors";
 import {FaRegMoon} from "react-icons/fa"
 import {RxHamburgerMenu} from "react-icons/rx"
 import { useAuth } from "../../context/auth-context";
+import { useState } from "react";
 
 const Li = styled.li`
   list-style:none;
+  @media(max-width:975px){
+    padding: 15px auto;
+    width:100%;
+    text-align:center;
+    height:50px;
+  }
 `
 const List = styled.ul`
   display:flex;
@@ -16,6 +23,18 @@ const List = styled.ul`
   margin:0px;
   width:100%;
   padding: 20px 40px;
+  @media(max-width:975px){  
+    flex-direction:column;
+    width:250px;
+    display:${props => props.menu};
+    position: absolute;
+    right:0;
+    top:60px;
+    background:${props => ColorStyle(props.dark).backCard};
+    padding: 0px 0px;
+    align-items:center;
+    gap:5px;
+  }
 `
 const StyledLink = styled(Link)`
   text-decoration:none;
@@ -39,6 +58,7 @@ const StyledLinkButton = styled(Link)`
 const Nav = styled.nav`
   background-color:${props => ColorStyle(props.dark).backCard};
   display:flex;
+  height: 60px;
   justify-content:space-between;
   align-items:center;
   width:100%;
@@ -46,6 +66,9 @@ const Nav = styled.nav`
   position: sticky;
   top:0px;
   z-index:1;
+  @media (max-width: 975px) {
+    position:relative;
+  }
 `
 const Rectangle = styled.div`
   background: ${props => ColorStyle(props.dark).switch};
@@ -67,10 +90,24 @@ const Circle = styled.div`
 const Menu = styled(RxHamburgerMenu)`
   cursor:pointer;
   scale:1.5;
+  display:none;
+  @media(max-width:975px){
+    display:block;
+  }
 `
 
 export function Navbar(){
   const {dark, setDark} = useAuth();
+  const [menu, setMenu] = useState("none");
+  
+  function handleMenu(){
+    console.log("123")
+    menu==="none" ? setMenu("flex") : setMenu("none");    
+  }
+
+  function handleCloseMenu(){
+    setMenu("none");
+  }
 
   function handleDarkMode(event){
     event.preventDefault();
@@ -90,7 +127,7 @@ export function Navbar(){
           <Circle dark={dark}/>
         </Rectangle>
       </div>
-      <List>
+      <List menu={menu} onClick={handleCloseMenu} dark={dark}>
         { urls.map((url, index)=>{
           if(url === "contact"){
             return(
@@ -106,9 +143,9 @@ export function Navbar(){
           )
           })
         }
-        <Menu/>
       
       </List>
+      <Menu onClick={handleMenu}/>
     </Nav>
   )
 }

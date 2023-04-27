@@ -11,6 +11,10 @@ const Wrapper = styled.div`
   justify-content:center;
   border-radius:12px;
   padding:12px;
+  @media(max-width:600px){
+    min-width: 90px;
+    min-height: 90px;
+  }
 `
 
 

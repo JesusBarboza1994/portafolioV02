@@ -6,9 +6,12 @@ import styled from "@emotion/styled";
 
 const DivCardsProject = styled.div`
   display:flex;
-  justify-content: space-evenly;
+  // justify-content: space-evenly;
   flex-wrap:wrap;
-  gap:24px;
+  gap:16px;
+  @media(max-width:975px){
+    justify-content:center;
+  }
 `
 
 export const ProjectsWrapper = () =>{

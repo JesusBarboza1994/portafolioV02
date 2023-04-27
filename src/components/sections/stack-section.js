@@ -36,6 +36,10 @@ const FullStackDivRight = styled.div`
   &:hover{
     animation: ${bounceRight} 2s forwards 1;
   }
+  @media(max-width:600px){
+    flex-direction:column; 
+    align-items:center;
+   }
 `
 const FullStackDivLeft = styled.div`
   height:90px;
@@ -45,6 +49,19 @@ const FullStackDivLeft = styled.div`
   &:hover{
     animation: ${bounceLeft} 2s forwards 1;
   }
+  @media(max-width:600px){
+   flex-direction:column-reverse; 
+   align-items:center;
+  }
+`
+const Wrapper = styled.div`
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  @media(max-width:600px){
+    flex-direction:row;
+    height:500px;
+  }
 `
 
 
@@ -53,7 +70,7 @@ export const StackSubDiv = ()=>{
   const frontImages = [vue, react, figma, git, javascript]
 
   return(
-    <div style={{display:"flex", flexDirection:"column", gap:"20px"}}>
+    <Wrapper>
       <FullStackDivRight style={{justifyContent:"flex-start"}} >
         {frontImages.map((image, index) =>{
             return <CardStack image={image} key={index}/>
@@ -65,6 +82,6 @@ export const StackSubDiv = ()=>{
             return <CardStack image={image} key={`a`+index}/>
           })}
       </FullStackDivLeft>
-    </div>
+    </Wrapper>
   )
 }

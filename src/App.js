@@ -14,8 +14,9 @@ import { Article2 } from "./articles/threejs-react";
 import { Canvas } from "@react-three/fiber";
 import Box from "./components/three-components/box";
 import NavbarRes from "./components/navbar/navbar-responsive";
+import whatsapp from "./assets/whatsapp.png"
 const Wrapper = styled.div`
-  max-width: 1000px;
+  
   margin:auto;
 `
 const Back = styled.div`
@@ -36,6 +37,26 @@ const Main = styled.div`
   position: relative;
   z-index:0;
 `
+const Img = styled.img`
+  height:70px;
+`
+const ContainerImage = styled.div`
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:75px;
+  height:75px;
+  border-radius:50%;
+  background:#4fc359;
+  opacity:0.95;
+  position:fixed;
+  bottom: 50px;
+  right: 20px;
+  @media(max-width:650px){
+    right:20px;
+    scale:0.8;
+  }
+`
 
 function App() {
   const {dark} = useAuth();
@@ -53,6 +74,10 @@ function App() {
     bottomRef.current.scrollIntoView({ behavior: 'smooth' });
   };
 
+  function handleWhatsapp(){
+    window.location.href = `
+    https://api.whatsapp.com/send/?phone=51966344009&text=Hola+Jesus%21+Me+gustaria+conversar+conversar+sobre+un+proyecto+contigo.&type=phone_number&app_absent=0`
+  }
 
   return (
     <div style={{background:ColorStyle(dark).mainBackground}}>
@@ -79,6 +104,9 @@ function App() {
             </Routes>
         </Wrapper>
       </Main>
+      <ContainerImage onClick={handleWhatsapp}>
+        <Img src={whatsapp} alt="imagen"/>
+      </ContainerImage>
       <Footer/>
     </div>
     
